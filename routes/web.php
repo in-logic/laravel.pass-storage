@@ -1,10 +1,16 @@
 <?php
 
+use Illuminate\Support\Facades\{
+    Auth,
+    Route
+};
+
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\RegisterController;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\Auth\{
+    LoginController,
+    RegisterController
+};
 
 Route::middleware('guest')->group(function() {
 
@@ -25,11 +31,6 @@ Route::middleware('guest')->group(function() {
 
     Route::get('/register', [RegisterController::class, 'show'])->name('register');
     Route::post('/register', [RegisterController::class, 'store'])->name('register.post');
-
-    Route::get('/logout', function () {
-        Auth::logout();
-        return redirect()->route('login');
-    });
 });
 
 Route::middleware(['auth'])->group(function() {
@@ -39,4 +40,11 @@ Route::middleware(['auth'])->group(function() {
     */
 
     Route::get('/home', [HomeController::class, 'show'])->name('home');
+
+    Route::get('/logout', function () {
+
+        Auth::logout();
+        return redirect()->route('login');
+
+    })->name('logout');
 });

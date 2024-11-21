@@ -15,10 +15,9 @@ return new class extends Migration
             $table->id('password_id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('application_id');
-            $table->unsignedBigInteger('application_level_id');
             $table->text('password_text');
             $table->longText('password_obs');
-            $table->enum('password_status', ['WEAK', 'MEDIUM', 'STRONG']);
+            $table->enum('password_status', ['UNKNOWN', 'WEAK', 'MEDIUM', 'STRONG'])->default('UNKNOWN');
             $table->timestamps();
         });
     }
