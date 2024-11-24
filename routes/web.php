@@ -5,7 +5,10 @@ use Illuminate\Support\Facades\{
     Route
 };
 
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\{
+	HomeController,
+	CredentialController
+};
 
 use App\Http\Controllers\Auth\{
     LoginController,
@@ -39,7 +42,13 @@ Route::middleware(['auth'])->group(function() {
     *   Home
     */
 
-    Route::get('/home', [HomeController::class, 'show'])->name('home');
+	Route::get('/home', [HomeController::class, 'show'])->name('home');
+
+    /*
+    *   Password
+    */
+
+    Route::get('/credential/{id}', [CredentialController::class, 'show'])->name('credential');
 
     Route::get('/logout', function () {
 

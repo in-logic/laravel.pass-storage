@@ -20,12 +20,14 @@ class HomeController
     public function store(Request $req)
     {
         $inputs = $req->validate(
-            [
+	    [
+		'password_user'  => 'required',
                 'password_text'  => 'required',
                 'password_obs'   => 'required',
                 'application_id' => 'required',
             ],
-            [
+	    [
+                 'password_user.required'  => 'The password user field is required.',
                 'password_text.required'  => 'The password text field is required.',
                 'password_obs.required'   => 'The password obs field is required.',
                 'application_id.required' => 'The application id field is required.',
@@ -35,7 +37,8 @@ class HomeController
         Password::create([
             'user_id' => Auth::id(),
             'application_id' => $inputs['application_id'],
-            'password_text' => $inputs['password_text'],
+	    'password_user' => $inputs['password_user'],
+	    'password_text' => $inputs['password_text'],
             'password_obs' => $inputs['password_obs'],
             'password_status' => 'UNKNOWN'
         ]);

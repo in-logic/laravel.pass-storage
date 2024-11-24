@@ -16,6 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('application_id');
             $table->text('password_text');
+            $table->text('password_user');
+            $table->longText('password_obs');
             $table->longText('password_obs');
             $table->enum('password_status', ['UNKNOWN', 'WEAK', 'MEDIUM', 'STRONG'])->default('UNKNOWN');
             $table->timestamps();

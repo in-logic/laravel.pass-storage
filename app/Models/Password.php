@@ -18,7 +18,8 @@ class Password extends Model
      */
     protected $fillable = [
         'user_id',
-        'application_id',
+	'application_id',
+        'password_user',
         'password_text',
         'password_obs',
         'password_status'
