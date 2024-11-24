@@ -45,7 +45,7 @@ Route::middleware(['auth'])->group(function() {
 	Route::get('/home', [HomeController::class, 'show'])->name('home');
 
     /*
-    *   Password
+    *   Credentials
     */
 
     Route::get('/credential/{id}', [CredentialController::class, 'show'])->name('credential');

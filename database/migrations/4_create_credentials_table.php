@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('passwords', function (Blueprint $table) {
-            $table->id('password_id');
+        Schema::create('credentials', function (Blueprint $table) {
+            $table->id('credential_id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('application_id');
-            $table->text('password_text');
-            $table->text('password_user');
-            $table->longText('password_obs');
-            $table->longText('password_obs');
-            $table->enum('password_status', ['UNKNOWN', 'WEAK', 'MEDIUM', 'STRONG'])->default('UNKNOWN');
+            $table->text('credential_user');
+            $table->text('credential_token');
+            $table->longText('credential_obs');
+            $table->enum('credential_token_status', ['UNKNOWN', 'WEAK', 'MEDIUM', 'STRONG'])->default('UNKNOWN');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('passwords');
+        Schema::dropIfExists('credentials');
     }
 };

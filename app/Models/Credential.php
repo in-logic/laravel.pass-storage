@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
-class Password extends Model
+class Credential extends Model
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
@@ -18,10 +18,10 @@ class Password extends Model
      */
     protected $fillable = [
         'user_id',
-	'application_id',
-        'password_user',
-        'password_text',
-        'password_obs',
-        'password_status'
+	    'application_id',
+        'credential_user',
+        'credential_token',
+        'credential_obs',
+        'credential_token_status'
     ];
 }
