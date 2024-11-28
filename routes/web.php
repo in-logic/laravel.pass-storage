@@ -48,7 +48,10 @@ Route::middleware(['auth'])->group(function() {
     *   Credentials
     */
 
-    Route::get('/credential/{id}', [CredentialController::class, 'show'])->name('credential');
+    Route::get('/credential/{id}',         [CredentialController::class, 'show'])->name('credential');
+    Route::post('/credential/add',         [CredentialController::class, 'store'])->name('credential.add');
+    Route::post('/credential/delete/{id}', [CredentialController::class, 'destroy'])->name('credential.delete');
+    Route::post('/credential/edit',        [CredentialController::class, 'edit'])->name('credential.edit');
 
     Route::get('/logout', function () {
 

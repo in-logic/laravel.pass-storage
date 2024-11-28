@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('application_id');
             $table->text('application_name');
             $table->text('application_icon');
-            $table->timestamp('created_at')->useCurrent();
+            $table->dateTime('created_at')->useCurrent();
         });
     }
 

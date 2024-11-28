@@ -17,7 +17,6 @@ return new class extends Migration
             $table->unsignedBigInteger('application_id');
             $table->text('credential_user');
             $table->text('credential_token');
-            $table->longText('credential_obs');
             $table->enum('credential_token_status', ['UNKNOWN', 'WEAK', 'MEDIUM', 'STRONG'])->default('UNKNOWN');
             $table->timestamps();
         });

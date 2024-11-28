@@ -9,10 +9,14 @@
     <!-- Styles -->
     @yield('stlyle')
 
+    @livewireStyles
+
     @vite('resources/css/app.css')
 
     <!-- Scripts -->
     @yield('scripts')
+
+    @livewireScripts
 
     <title>PSSWD: @yield('title', 'Your password manager')</title>
 </head>
