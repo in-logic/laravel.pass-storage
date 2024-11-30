@@ -5,25 +5,25 @@
 @section('content')
 <div>
 
-    <x-box>
-        <x-form action="{{ route('register.post') }}">
+    <x-layout.box>
+        <x-layout.form action="{{ route('register.post') }}">
             @csrf
 
-            <x-input
+            <x-ui.input
                 type="text"
                 placeholder="username"
                 label="Username"
                 name="username"
             />
 
-            <x-input
+            <x-ui.input
                 type="email"
                 placeholder="e-mail"
                 label="Email"
                 name="email"
             />
 
-            <x-input
+            <x-ui.input
                 type="password"
                 placeholder="Password"
                 label="Password"
@@ -35,17 +35,17 @@
                     Already have an account?
                 </a>
 
-                <x-button type="submit" style="success">
+                <x-ui.button type="submit" style="success">
                     <x-slot:icon>
                         <i class="fa fa-check"></i>
                     </x-slot:icon>
 
                     Register
-                </x-button>
+                </x-ui.button>
             </div>
 
-        </x-form>
-    </x-box>
+        </x-layout.form>
+    </x-layout.box>
 
 </div>
 @endsection

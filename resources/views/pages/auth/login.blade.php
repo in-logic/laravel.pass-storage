@@ -3,18 +3,18 @@
 @section('title', 'Login')
 <div>
 
-    <x-box>
-        <x-form action="{{ route('login.post') }}">
+    <x-layout.box>
+        <x-layout.form action="{{ route('login.post') }}">
             @csrf
 
-            <x-input
+            <x-ui.input
                 type="email"
                 placeholder="e-mail"
                 label="Email"
                 name="email"
             />
 
-            <x-input
+            <x-ui.input
                 type="password"
                 placeholder="Password"
                 label="Password"
@@ -26,17 +26,17 @@
                     Don't have an account yet?
                 </a>
 
-                <x-button type="submit" style="success">
+                <x-ui.button type="submit" style="success">
                     <x-slot:icon>
                         <i class="fa fa-check"></i>
                     </x-slot:icon>
 
                     Login
-                </x-button>
+                </x-ui.button>
             </div>
 
-        </x-form>
-    </x-box>
+        </x-layout.form>
+    </x-layout.box>
 
 </div>
 
