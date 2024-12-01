@@ -8,7 +8,11 @@
     </h1>
 
     <div>
-        <a href="{{ route('logout') }}">Logout</a>
+        <x-layout.form action="{{ route('credential.export.all') }}">
+            <x-ui.button>
+                Export
+            </x-ui.button>
+        </x-layout.form>
 
         <section>
             <h2>Credentials</h2>

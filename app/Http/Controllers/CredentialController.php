@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\RequestExportCredentials;
 use App\Models\Credential;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -70,22 +71,21 @@ class CredentialController
             'credential_token.required' => 'The password text field is required.',
         ]);
 
-        try {
+        $credential = Credential::find($id)->where('user_id', '=', Auth::id());
 
-            $credential = Credential::find($id);
+        $credential->update([
+            'credential_user'  => $inputs['credential_user'] ?? $credential->credential_user,
+            'credential_token' => $inputs['credential_token'] ?? $credential->credential_token,
+        ]);
 
-            $credential->update([
-                'credential_user'  => $inputs['credential_user'] ?? $credential->credential_user,
-                'credential_token' => $inputs['credential_token'] ?? $credential->credential_token,
-            ]);
+        $credential->save();
 
-            $credential->save();
+        return redirect()->route('credential', $id)->with('success', 'Credential edited.');
+    }
 
-            return redirect()->route('credential', $id)->with('success', 'Credential edited.');
-
-        } catch (\Exception $e) {
-
-            return redirect()->route('home')->with('error', $e->getMessage());
-        }
+    public function export()
+    {
+        event(new RequestExportCredentials(Auth::id()));
+        return response()->json(['message' => 'Export request has been queued.']);
     }
 }
