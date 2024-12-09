@@ -1,42 +1,42 @@
 @extends('layouts.guest')
 
 @section('title', 'Login')
-<div>
+<div class="flex items-center justify-center w-full h-full">
 
-    <x-layout.box>
-        <x-layout.form action="{{ route('login.post') }}">
-            @csrf
+    <x-layout.form
+        action="{{ route('login.post') }}"
+        class="flex flex-col gap-5"
+    >
+        <x-ui.input
+            type="email"
+            placeholder="jhon.doe@example.com"
+            label="Email"
+            name="email"
+        />
 
-            <x-ui.input
-                type="email"
-                placeholder="e-mail"
-                label="Email"
-                name="email"
-            />
+        <x-ui.input
+            type="password"
+            placeholder="*************"
+            label="Password"
+            name="password"
+        />
 
-            <x-ui.input
-                type="password"
-                placeholder="Password"
-                label="Password"
-                name="password"
-            />
+        <hr>
 
-            <div>
-                <a href="{{ route('register') }}" >
-                    Don't have an account yet?
-                </a>
+        <div>
+            <a href="{{ route('register') }}" class="text-xs text-gray-500">
+                Don't have an account yet?
+            </a>
 
-                <x-ui.button type="submit" style="success">
-                    <x-slot:icon>
-                        <i class="fa fa-check"></i>
-                    </x-slot:icon>
+            <x-ui.button type="submit" style="success">
+                <x-slot:icon>
+                    <i class="fa fa-check"></i>
+                </x-slot:icon>
 
-                    Login
-                </x-ui.button>
-            </div>
-
-        </x-layout.form>
-    </x-layout.box>
+                Login
+            </x-ui.button>
+        </div>
+    </x-layout.form>
 
 </div>
 

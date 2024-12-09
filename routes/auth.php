@@ -9,23 +9,20 @@ use App\Http\Controllers\Auth\{
     RegisterController
 };
 
-Route::middleware('guest')->group(function() {
+/*
+*   Homepage
+*/
 
-    /*
-    *   Homepage
-    */
-
-    Route::get('/', function () {
-        return view('homepage');
-    });
-
-    /*
-    *   Auth
-    */
-
-    Route::get('/login',  [LoginController::class, 'show'])->name('login');
-    Route::post('/login', [LoginController::class, 'store'])->name('login.post');
-
-    Route::get('/register', [RegisterController::class, 'show'])->name('register');
-    Route::post('/register', [RegisterController::class, 'store'])->name('register.post');
+Route::get('/', function () {
+    return view('homepage');
 });
+
+/*
+*   Auth
+*/
+
+Route::get('/login',  [LoginController::class, 'show'])->name('login');
+Route::post('/login', [LoginController::class, 'store'])->name('login.post');
+
+Route::get('/register', [RegisterController::class, 'show'])->name('register');
+Route::post('/register', [RegisterController::class, 'store'])->name('register.post');

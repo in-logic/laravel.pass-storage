@@ -1,8 +1,8 @@
-<div class="form-group" style="margin-bottom: 15px;">
+<div class="flex flex-col">
     @if($label)
-        <label>{{ $label }}</label>
+        <label class="text-gray-800 text-sm">{{ $label }}</label>
     @endif
-    <input type="{{ $type }}" placeholder="{{ $placeholder }}" class="form-control" {{ $attributes }}>
+    <input class="p-2 rounded-md border border-gray-200" type="{{ $type }}" placeholder="{{ $placeholder }}" {{ $attributes }}>
 </div>
 
 @if($errors->has($name))
