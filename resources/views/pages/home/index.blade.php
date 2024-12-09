@@ -18,30 +18,53 @@
             <h2>Credentials</h2>
             <x-ui.input type="text" placeholder="Search" label="Search" name="search" />
 
-            <div>
+            <div class="flex flex-col gap-2 px-2">
                 @if (count($credentials) > 0)
 
                     @foreach ($credentials as $credential)
-                        <div>
-                            <h3>{{ $credential->credential_user }}</h3>
-                            <p>{{ $credential->credential_token }}</p>
 
-                            <div>
-                                <x-layout.form action="{{ route('credential.delete', $credential->credential_id)  }}">
-                                    <x-ui.button>
-                                        <span><i class="fa fa-trash"></i></span>
-                                        Delete
-                                    </x-ui.button>
-                                </x-layout.form>
-
-                                <a href="{{ route('credential', $credential->credential_id) }}">
-                                    <x-slot name="icon">
-                                        <i class="fa fa-pencil"></i>
-                                    </x-slot>
-                                    Edit
-                                </a>
+                        <div class="flex flex-col w-full justify-center  shadow-lg bg-white p-4 rounded-md">
+                            <div class="flex gap-2 items-center">
+                                <i class="fa {{ $credential->application_icon }} text-3xl"></i>
+                                <h1 class="text-3xl">
+                                    {{$credential->application_name}}
+                                </h1>
                             </div>
 
+                            <hr class="my-2">
+
+                            <div class="flex justify-between w-full p-2">
+                                <div>
+                                    <article class="">
+                                        <span class="text-sm text-gray-600 font-medium">user</span>
+                                        <p class="flex text-3xl font-bold cursor-pointer hover:bg-gray-100 px-2 rounded-md">{{ $credential->credential_user }}</p>
+                                    </article>
+
+                                    <article class="">
+                                        <span class="text-sm text-gray-600 font-medium">credential</span>
+                                        <p class="text-2xl font-bold items-center cursor-pointer hover:bg-gray-100 px-2 rounded-md">
+                                            {{ str_repeat('*', strlen($credential->credential_token)) }}
+                                            <i class="fa fa-eye text-sm text-gray-400 cursor-pointer"></i>
+                                        </p>
+                                    </article>
+                                </div>
+    
+                                <div>
+                                    <x-layout.form action="{{ route('credential.delete', $credential->credential_id)  }}">
+                                        <x-ui.button>
+                                            <span><i class="fa fa-trash"></i></span>
+                                            Delete
+                                        </x-ui.button>
+                                    </x-layout.form>
+    
+                                    <a href="{{ route('credential', $credential->credential_id) }}">
+                                        <x-slot name="icon">
+                                            <i class="fa fa-pencil"></i>
+                                        </x-slot>
+                                        Edit
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     @endforeach
 

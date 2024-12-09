@@ -11,9 +11,13 @@ class HomeController
 {
     public function show(): View
     {
+        $credentials = Credential::where('user_id', Auth::id())
+            ->join('applications', 'applications.application_id', '=', 'credentials.application_id')
+            ->get();
+
         return view('pages.home.index', [
             'user' => Auth::user(),
-            'credentials' => Credential::where('user_id', Auth::id())->get(),
+            'credentials' => $credentials,
             'applications' => Application::all()->pluck('application_name', 'application_id')
         ]);
     }

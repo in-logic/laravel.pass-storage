@@ -5,7 +5,7 @@
 
     <x-layout.form
         action="{{ route('login.post') }}"
-        class="flex flex-col gap-5"
+        class="flex flex-col gap-5 w-full p-2 sm:w-[500px] rounded-md bg-white shadow-lg"
     >
         <x-ui.input
             type="email"
@@ -23,18 +23,17 @@
 
         <hr>
 
-        <div>
-            <a href="{{ route('register') }}" class="text-xs text-gray-500">
-                Don't have an account yet?
-            </a>
-
-            <x-ui.button type="submit" style="success">
+        <div class="flex justify-between items-center">
+            <x-ui.button type="submit" :style="'success'">
                 <x-slot:icon>
                     <i class="fa fa-check"></i>
                 </x-slot:icon>
 
                 Login
             </x-ui.button>
+            <a href="{{ route('register') }}" class="text-xs text-gray-500 underline">
+                Don't have an account yet?
+            </a>
         </div>
     </x-layout.form>
 

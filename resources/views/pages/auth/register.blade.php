@@ -35,7 +35,7 @@
                     Already have an account?
                 </a>
 
-                <x-ui.button type="submit" style="success">
+                <x-ui.button type="submit" :style="'success'">
                     <x-slot:icon>
                         <i class="fa fa-check"></i>
                     </x-slot:icon>
