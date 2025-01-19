@@ -21,6 +21,8 @@
     <title>PSSWD: @yield('title', 'Your password manager')</title>
 </head>
   <body>
-    @yield('content')
+    <main class="flex justify-center items-center">
+      @yield('content')
+    </main>
   </body>
 </html>

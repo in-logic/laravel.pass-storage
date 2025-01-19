@@ -22,15 +22,17 @@
 </head>
   <body>
 
-    <header class="flex justify-between bg-gray-100">
-        <h1>PSSWD</h1>
-        <nav>
-            <a href="{{ route('logout') }}">Logout</a>
-        </nav>
+    <header class="flex justify-between p-2">
+      <h1>PSSWD</h1>
+      <nav>
+          <a href="{{ route('logout') }}">Logout</a>
+      </nav>
     </header>
 
+    <hr class="my-2">
+
     <main>
-        @yield('content')
+      @yield('content')
     </main>
 
   </body>

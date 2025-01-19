@@ -3,18 +3,86 @@
 @section('title', 'Home')
 
 @section('content')
-    <h1>
-        Welcome, {{ $user->username }}!
-    </h1>
-
     <div>
-        <x-layout.form action="{{ route('credential.export.all') }}">
-            <x-ui.button>
-                Export
-            </x-ui.button>
-        </x-layout.form>
+        <div class="flex gap-2 items-center">
+            
+            <div x-data="{ open: false }" x-cloak>
+                <x-ui.button @click="open = true">
+                    <x-slot:icon>
+                        <i class="fa fa-list"></i>
+                    </x-slot:icon>
+                    Backups
+                </x-ui.button>
 
-        <section>
+                <x-layout.modal>
+                    <x-slot:header>
+                        <h2 class="text-xl font-bold mb-4">Backupt history</h2>
+                    </x-slot:header>
+                    <x-slot:body>
+                        <x-layout.table 
+                            :headers="[
+                                'Name',
+                                'Date',
+                                'Size',
+                                'Actions',
+                            ]" 
+                            :rows="[ 
+                                ['name', '2022-01-01', '100MB', 'a'],
+                            ]" 
+                        />
+                    </x-slot:body>
+                </x-layout.modal>
+            </div>
+
+            <div x-data="{ open: false }" x-cloak>
+    
+                <x-ui.button @click="open = true">
+                    Add Credential
+                </x-ui.button>
+        
+                <div x-show="open" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
+                    <div class="bg-white p-5 rounded-lg shadow-lg lg:w-1/3 w-full mx-9">
+        
+                        <header id="modal-header">
+                            <x-ui.button @click="open = false" class="float-right text-gray-500">
+                                <i class="fa fa-times"></i>
+                            </x-ui.button>
+                            <h2 class="text-xl font-bold mb-4">Add your credential</h2>
+                        </header>
+        
+                        <x-layout.form action="{{ route('credential.add') }}">
+        
+                            <div id="modal-body">
+                                <x-ui.input type="text" placeholder="Username" label="Username" name="credential_user" />
+                                <x-ui.input type="text" placeholder="Token" label="Token" name="credential_token" />
+        
+                                <x-ui.select name="application" :options="$applications"/>
+                            </div>
+        
+                            <div id="modal-buttons" class="flex justify-end gap-5">
+        
+                                <x-ui.button
+                                    type="submit"
+                                    @click="open = false"
+                                    class="bg-blue-500 text-white px-4 py-2 rounded">
+                                    Add
+                                </x-ui.button>
+        
+                                <x-ui.button
+                                    type="button"
+                                    @click="open = false"
+                                    class="text-black px-4 py-2 rounded">
+                                    Cancel
+                                </x-ui.button>
+        
+                            </div>
+                        </x-layout.form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="flex flex-col gap-2">
             <h2>Credentials</h2>
             <x-ui.input type="text" placeholder="Search" label="Search" name="search" />
 
@@ -73,52 +141,5 @@
                 @endif
             </div>
         </section>
-    </div>
-
-    <div x-data="{ open: false }" x-cloak>
-
-        <x-ui.button @click="open = true" class="bg-blue-500 text-white px-4 py-2 rounded">
-            Add Credential
-        </x-ui.button>
-
-        <div x-show="open" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
-            <div class="bg-white p-5 rounded-lg shadow-lg lg:w-1/3 w-full mx-9">
-
-                <header id="modal-header">
-                    <x-ui.button @click="open = false" class="float-right text-gray-500">
-                        <i class="fa fa-times"></i>
-                    </x-ui.button>
-                    <h2 class="text-xl font-bold mb-4">Add your credential</h2>
-                </header>
-
-                <x-layout.form action="{{ route('credential.add') }}">
-
-                    <div id="modal-body">
-                        <x-ui.input type="text" placeholder="Username" label="Username" name="credential_user" />
-                        <x-ui.input type="text" placeholder="Token" label="Token" name="credential_token" />
-
-                        <x-ui.select name="application" :options="$applications"/>
-                    </div>
-
-                    <div id="modal-buttons" class="flex justify-end gap-5">
-
-                        <x-ui.button
-                            type="submit"
-                            @click="open = false"
-                            class="bg-blue-500 text-white px-4 py-2 rounded">
-                            Add
-                        </x-ui.button>
-
-                        <x-ui.button
-                            type="button"
-                            @click="open = false"
-                            class="text-black px-4 py-2 rounded">
-                            Cancel
-                        </x-ui.button>
-
-                    </div>
-                </x-layout.form>
-            </div>
-        </div>
     </div>
 @endsection
